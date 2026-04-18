@@ -1,0 +1,14 @@
+# Risk Register – File Upload Validator
+
+| Risk                                                                 | Likelihood (1–5)  | Impact (1–5) | Score (LxI) | Mitigation                                                                | Owner         |
+|----------------------------------------------------------------------|-------------------|--------------|-------------|---------------------------------------------------------------------------|---------------|
+| Unauthorized file upload bypasses validation                         | 3                 | 5            | 15          | Enforce validation checks before processing; add unit tests for all rules | QA Lead       |
+| Malware file types not fully blocked                                 | 2                 | 5            | 10          | Maintain blocked extensions list; review and expand list periodically     | Dev Lead      |
+| Oversized files accepted due to logic bug                            | 3                 | 4            | 12          | Add size validation tests; code review for boundary conditions            | QA Lead       | 
+| Invalid filename handling causes crash                               | 2                 | 4            | 8           | Validate filename input; add checks for empty/null values                 | Dev Lead      |
+| Inconsistent results due to missing test coverage                    | 3                 | 3            | 9           | Maintain minimum 5+ unit tests; enforce test pass before merge            | QA Lead       |
+| Poor Git workflow (direct commits to main)                           | 2                 | 4            | 8           | Enforce PR-only workflow; require review before merge                     | DevOps Lead   |
+| Merge conflicts delay progress                                       | 3                 | 3            | 9           | Use small, frequent commits; communicate changes within team              | DevOps Lead   |
+| Lack of documentation clarity                                        | 2                 | 3            | 6           | Assign Docs Lead; review markdown files weekly                            | Docs Lead     |
+| Incorrect file type detection (edge cases like uppercase extensions) | 3                 | 3            | 9           | Normalize filename to lowercase before validation                         | Dev Lead      |
+| Team member inactivity / uneven contribution                         | 2                 | 4            | 8           | Track commits; rotate roles; weekly check-ins                             | PM/Scrum Lead |
