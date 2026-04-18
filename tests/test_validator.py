@@ -14,3 +14,6 @@ def test_empty_filename():
 
 def test_invalid_file_format():
     assert validate_file("myfile", 1) == "Invalid file format"
+    
+def test_file_near_size_limit():
+    assert validate_file("almostfull.pdf", 4.5) == "Warning: File is near the size limit"
