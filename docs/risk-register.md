@@ -12,3 +12,4 @@
 | Lack of documentation clarity                                        | 2                 | 3            | 6           | Assign Docs Lead; review markdown files weekly                            | Docs Lead     |
 | Incorrect file type detection (edge cases like uppercase extensions) | 3                 | 3            | 9           | Normalize filename to lowercase before validation                         | Dev Lead      |
 | Team member inactivity / uneven contribution                         | 2                 | 4            | 8           | Track commits; rotate roles; weekly check-ins                             | PM/Scrum Lead |
+| Incorrect warning threshold                                          | 2                 | 2            | 4           | Define threshold clearly and test edge cases                              | QA Lead       |

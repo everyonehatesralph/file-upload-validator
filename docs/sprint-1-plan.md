@@ -23,3 +23,5 @@ Build the core file validation logic and prepare the project repository and init
 
 ## Notes
 Sprint 1 focuses on the core upload validation behavior and repository setup. Documentation artifacts such as QA plan and defect log can be expanded in the next sprint.
+
+Added new requirement: File size warning feature (US-11) for future sprint.
