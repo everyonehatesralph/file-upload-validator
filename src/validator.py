@@ -2,6 +2,7 @@ def validate_file(filename, file_size_mb):
     allowed_extensions = [".pdf", ".docx", ".png", ".jpg"]
     blocked_extensions = [".exe", ".bat", ".js", ".sh"]
     max_size_mb = 5
+    warning_threshold_mb = 4
 
     if not filename or filename.strip() == "":
         return "Filename is empty"
@@ -24,5 +25,9 @@ def validate_file(filename, file_size_mb):
 
     if file_size_mb > max_size_mb:
         return "File too large"
+
+    # 🔥 ADD THIS FEATURE HERE
+    if file_size_mb >= warning_threshold_mb:
+        return "Warning: File is near the size limit"
 
     return "Upload allowed"
