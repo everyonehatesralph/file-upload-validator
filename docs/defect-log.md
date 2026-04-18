@@ -2,6 +2,6 @@
 
 | Bug ID | Description                                                                                               | Severity  | Status | PR Link          |
 |--------|-----------------------------------------------------------------------------------------------------------|-----------|--------|------------------|
-| B001   | File size validation allowed oversized files because the limit was incorrectly changed from 5 MB to 50 MB | S2 - High | Closed | Add PR link here |
+| B001   | File size validation allowed oversized files because the limit was incorrectly changed from 5 MB to 50 MB | S2 - High | Open   | -                |
 
 
