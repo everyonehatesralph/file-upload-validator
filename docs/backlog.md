@@ -128,3 +128,13 @@ The File Upload Validator is a simple system that checks uploaded files based on
 - Project is pushed to GitHub
 - Team members can view the project files in the repository
 - Commits reflect meaningful project progress
+
+### US-11
+**As a user, I want a warning when my file is near the size limit so that I can adjust before uploading.**  
+Priority: Medium  
+Story Points: 2  
+
+Acceptance Criteria:
+- System detects files above 80% of max size
+- Displays warning message
+- Does not block upload
