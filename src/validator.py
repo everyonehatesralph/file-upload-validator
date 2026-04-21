@@ -1,32 +1,60 @@
-def validate_file(filename, file_size_mb):
-    allowed_extensions = [".pdf", ".docx", ".png", ".jpg"]
-    blocked_extensions = [".exe", ".bat", ".js", ".sh"]
-    max_size_mb = 5
-    warning_threshold_mb = 4
+ALLOWED_EXTENSIONS = [".pdf", ".docx", ".png", ".jpg"]
+BLOCKED_EXTENSIONS = [".exe", ".bat", ".js", ".sh"]
+MAX_SIZE_MB = 5
+WARNING_THRESHOLD_MB = 4
 
-    if not filename or filename.strip() == "":
+
+def is_filename_empty(filename):
+    return not filename or filename.strip() == ""
+
+
+def get_file_extension(filename):
+    if "." not in filename:
+        return None
+    return filename[filename.rfind("."):].lower()
+
+
+def is_blocked_extension(extension):
+    return extension in BLOCKED_EXTENSIONS
+
+
+def is_allowed_extension(extension):
+    return extension in ALLOWED_EXTENSIONS
+
+
+def is_file_empty(file_size_mb):
+    return file_size_mb <= 0
+
+
+def is_file_too_large(file_size_mb):
+    return file_size_mb > MAX_SIZE_MB
+
+
+def is_near_size_limit(file_size_mb):
+    return WARNING_THRESHOLD_MB <= file_size_mb <= MAX_SIZE_MB
+
+
+def validate_file(filename, file_size_mb):
+    if is_filename_empty(filename):
         return "Filename is empty"
 
-    filename = filename.lower()
-
-    if "." not in filename:
+    extension = get_file_extension(filename)
+    if extension is None:
         return "Invalid file format"
 
-    extension = filename[filename.rfind("."):]
-
-    if extension in blocked_extensions:
+    if is_blocked_extension(extension):
         return "Blocked file type"
 
-    if extension not in allowed_extensions:
+    if not is_allowed_extension(extension):
         return "File type not allowed"
 
-    if file_size_mb <= 0:
+    if is_file_empty(file_size_mb):
         return "File is empty"
 
-    if file_size_mb > max_size_mb:
+    if is_file_too_large(file_size_mb):
         return "File too large"
 
-    if file_size_mb >= warning_threshold_mb:
+    if is_near_size_limit(file_size_mb):
         return "Warning: File is near the size limit"
 
     return "Upload allowed"
