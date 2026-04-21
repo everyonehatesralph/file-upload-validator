@@ -1,0 +1,65 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-build-smoke:
+    runs-on: ubuntu-latest
+
+    env:
+      APP_URL: ${{ vars.APP_URL }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest requests
+
+      - name: Run unit tests
+        run: |
+          python -m pytest -v
+
+      - name: Build check
+        run: |
+          python -m py_compile app.py
+          python -m py_compile src/validator.py
+
+      - name: Wait for deployment to update
+        run: |
+          echo "Waiting for Streamlit Cloud redeploy..."
+          sleep 60
+
+      - name: Smoke test deployed app
+        run: |
+          python - <<'PY'
+          import os
+          import sys
+          import requests
+
+          app_url = os.environ.get("APP_URL")
+          if not app_url:
+              print("APP_URL is missing.")
+              sys.exit(1)
+
+          try:
+              response = requests.get(app_url, timeout=20)
+              print("Status code:", response.status_code)
+              if response.status_code != 200:
+                  sys.exit(1)
+              print("Smoke test passed.")
+          except Exception as e:
+              print("Smoke test failed:", e)
+              sys.exit(1)
+          PY
