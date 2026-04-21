@@ -13,3 +13,6 @@
 | Incorrect file type detection (edge cases like uppercase extensions) | 3                 | 3            | 9           | Normalize filename to lowercase before validation                         | Dev Lead      |
 | Team member inactivity / uneven contribution                         | 2                 | 4            | 8           | Track commits; rotate roles; weekly check-ins                             | PM/Scrum Lead |
 | Incorrect warning threshold                                          | 2                 | 2            | 4           | Define threshold clearly and test edge cases                              | QA Lead       |
+| Weak authentication                                                  | 3                 | 4            | 12          | Use stronger password and environment variables                           | Dev           |
+| Input validation bypass                                              | 3                 | 3            | 9           | Validate all user inputs                                                  | Dev           |
+| Dependency vulnerability                                             | 2                 | 4            | 8           | Run pip-audit regularly                                                   | Dev           |

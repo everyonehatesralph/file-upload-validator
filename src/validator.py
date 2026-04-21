@@ -1,3 +1,6 @@
+from turtle import st
+
+
 ALLOWED_EXTENSIONS = [".pdf", ".docx", ".png", ".jpg"]
 BLOCKED_EXTENSIONS = [".exe", ".bat", ".js", ".sh"]
 MAX_SIZE_MB = 5
@@ -32,6 +35,11 @@ def is_file_too_large(file_size_mb):
 
 def is_near_size_limit(file_size_mb):
     return WARNING_THRESHOLD_MB <= file_size_mb <= MAX_SIZE_MB
+
+def is_valid_filename(name):
+    # only allow letters, numbers, dot, dash, underscore
+    return bool(re.match(r'^[\w\-. ]+$', name))
+
 
 
 def validate_file(filename, file_size_mb):
