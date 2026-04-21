@@ -9,11 +9,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Logging setup
+log_path = os.path.join(os.getcwd(), "app.log")
 logging.basicConfig(
-    filename="app.log",
+    filename=log_path,
     level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    force=True
 )
+
+logging.info("App started")
 
 # Authentication
 APP_PASSWORD = os.getenv("APP_PASSWORD")
@@ -23,6 +27,7 @@ st.title("File Upload Validator")
 
 # Stop app if password is not configured
 if not APP_PASSWORD:
+    logging.error("APP_PASSWORD is not configured")
     st.error("App password not configured. Contact developer.")
     st.stop()
 
@@ -30,6 +35,7 @@ if not APP_PASSWORD:
 password = st.text_input("Enter password to access app", type="password")
 
 if password != APP_PASSWORD:
+    logging.warning("Unauthorized access attempt")
     st.warning("Unauthorized access")
     st.stop()
 
